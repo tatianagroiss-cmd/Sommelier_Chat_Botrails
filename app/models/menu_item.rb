@@ -4,4 +4,8 @@ class MenuItem < ApplicationRecord
   validates :name, presence: true
   validates :description, length: { maximum: 50 }
   validates :price, presence: true, numericality: { greater_than: 0 }
+
+
+  def index
+  end
 end

@@ -3,4 +3,7 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def view_the_menu
+  end
 end
