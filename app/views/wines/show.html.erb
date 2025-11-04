@@ -1,0 +1,38 @@
+<div class="container my-5">
+  <div class="card shadow-lg border-0">
+    <div class="row g-0">
+      <!-- Left: Wine Image -->
+      <div class="col-md-4">
+        <% if @wine.image.attached? %>
+          <%= image_tag @wine.image, class: "img-fluid rounded-start", alt: @wine.name %>
+        <% else %>
+          <img src="https://via.placeholder.com/400x500?text=Wine+Bottle" class="img-fluid rounded-start" alt="Wine image">
+        <% end %>
+      </div>
+
+      <!-- Right: Wine Details -->
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title fw-bold mb-2"><%= @wine.name %></h3>
+          <h5 class="text-muted mb-4"><%= @wine.category %> — <%= @wine.country %></h5>
+
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item"><strong>Category:</strong> <%= @wine.category %></li>
+            <li class="list-group-item"><strong>Country:</strong> <%= @wine.country %></li>
+            <li class="list-group-item"><strong>Volume:</strong> <%= @wine.volume.presence || "0.75 l" %></li>
+            <li class="list-group-item"><strong>Price:</strong> € <%= number_to_currency(@wine.price, unit: "", separator: ".", delimiter: ",") %></li>
+          </ul>
+
+          <p class="card-text mt-3">
+            <%= @wine.description.presence || "No description available yet." %>
+          </p>
+
+          <div class="d-flex gap-3 mt-4">
+            <%= link_to "Back to Wine List", wines_path, class: "btn btn-outline-secondary" %>
+            <%= link_to "Order this Wine", new_order_item_path(wine_id: @wine.id), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
