@@ -7,6 +7,10 @@ class OrderItemsController < ApplicationController
     @order_item = OrderItem.find(params[:id])
   end
 
+  def new
+    @order_item = OrderItem.new
+  end
+
   def create
     @order_item = OrderItem.new(order_item_params)
     if @order_item.save
