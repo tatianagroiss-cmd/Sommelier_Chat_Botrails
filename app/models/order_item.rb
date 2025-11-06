@@ -1,5 +1,5 @@
 class OrderItem < ApplicationRecord
-  belongs_to :user, foreign_key: "id_user"
+  belongs_to :user
   belongs_to :menu_item, optional: true
   belongs_to :wine, optional: true
   belongs_to :beverage, optional: true

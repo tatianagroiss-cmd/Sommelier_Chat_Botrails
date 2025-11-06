@@ -19,9 +19,24 @@
 
         <div class="mt-4 d-flex justify-content-between">
           <%= link_to "Back to Menu", menu_item_path, class: "btn btn-outline-secondary" %>
-          <%= link_to "Add to Order", new_order_item_path(menu_item: @menu_item.id), class: "btn btn-primary" %>
+         <%= button_to "Add to Order",
+            order_items_path(order_item: { menu_item_id: @menu_item.id, quantity: 1 }),
+            method: :post,
+            class: "btn btn-primary",
+            onclick: "showAddedAlert()" %>
         </div>
 
       </div>
     </div>
   </div>
+
+<script>
+function showAddedAlert() {
+Swal.fire({
+title: 'Added to Order!',
+text: 'Your meal has been added successfully.',
+icon: 'success',
+confirmButtonText: 'OK'
+})
+}
+</script>

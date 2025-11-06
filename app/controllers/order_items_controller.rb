@@ -14,8 +14,10 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = OrderItem.new(order_item_params)
+    @order_item.user = current_user
     if @order_item.save
-      redirect_to @order_item, notice: 'Order item was successfully created.'
+      #redirect_to @order_item, notice: 'Order item was successfully created.'
+
     else
       render :new
     end
@@ -24,6 +26,6 @@ class OrderItemsController < ApplicationController
   private
 
   def order_item_params
-    params.require(:order_item).permit(:user_id, :menu_item_id, :wine_id, :beverage_id, :quantity)
+    params.require(:order_item).permit(:user_id, :menu_item_id, :wine_id, :beverage_id, :quantity, :total)
   end
 end
