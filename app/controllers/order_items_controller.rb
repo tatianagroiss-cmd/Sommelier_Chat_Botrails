@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   def index
-    @order_items = OrderItem.all
+    @order_items = current_user.order_items.includes(:menu_item, :wine, :beverage)
+    @total_price = @order_items.sum(:total)
   end
 
   def show

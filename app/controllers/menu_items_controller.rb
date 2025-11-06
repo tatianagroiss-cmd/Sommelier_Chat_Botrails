@@ -4,6 +4,6 @@ class MenuItemsController < ApplicationController
   end
 
   def show
-    @Menu_item = MenuItem.find(params[:id])
+    @menu_item = MenuItem.find(params[:id])
   end
 end

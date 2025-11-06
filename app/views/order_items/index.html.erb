@@ -1,2 +1,27 @@
+<h2 class="text-center mb-4">Your Order</h2>
 
-    <h1> order items </h1>
+<table class="table table-striped text-center">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Total (€)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_items.each do |item| %>
+      <tr>
+        <td><%= item.menu_item&.name || item.wine&.name || item.beverage&.name %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.total, unit: "€") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between mt-4">
+  <%= link_to "Back to Menu", menu_items_path, class: "btn btn-outline-secondary" %>
+  <%= link_to "Back to Wine List", wines_path, class: "btn btn-outline-secondary" %>
+  <%= link_to "Back to Drinks", beverages_path, class: "btn btn-outline-secondary" %>
+  <h4><strong>Total:</strong> <%= number_to_currency(@total_price, unit: "€") %></h4>
+</div>
