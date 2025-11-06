@@ -23,7 +23,7 @@
             <%= form_with url: order_items_path, method: :post, local: true, class: "d-inline-flex align-items-center" do |f| %>
               <%= f.hidden_field :beverage_id, value: beverage.id %>
               <%= f.number_field :quantity, value: 1, min: 1, class: "form-control form-control-sm me-2", style: "width: 70px;" %>
-              <%= f.submit "Add to Order", class: "btn btn-outline-primary btn-sm" %>
+              <%= link_to "Add to Order", new_order_item_path(beverage_id: @beverage.id), class: "btn btn-outline-primary btn-sm" %>
             <% end %>
           </td>
         </tr>
