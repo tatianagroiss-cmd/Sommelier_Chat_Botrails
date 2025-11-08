@@ -12,18 +12,38 @@
 @import "pages/index";
 
 body {
+  background: radial-gradient(circle at top left, #111 0%, #000 70%);
+  background-attachment: fixed;
   background-color: #0b0b0b; /* матово-черный фон */
-  color: #f5f5f5; /* мягкий светлый текст */
-  font-family: 'Inter', sans-serif;
+  color: #f8f8f8; /* мягкий светлый текст */
+  font-family: 'Playfair Display', sans-serif;
+  letter-spacing: 0.3px;
+  line-height: 1.7;
+  font-size: 1rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url("https://www.transparenttextures.com/patterns/black-linen.png");
+  opacity: 0.12;
+  pointer-events: none;
 }
 
 /* Золотые кнопки */
 .btn-gold {
-  color: #f5f5f5;
-  background-color: transparent;
-  border: 2px solid #c9a400; /* золотая кайма */
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  color: #fff;
+  background-image: -webkit-repeating-linear-gradient(left, rgba(255, 238, 170, 0) 0%, rgba(255, 238, 170, 0) 3%, rgba(255, 238, 170, .1) 3.75%),
+    -webkit-repeating-linear-gradient(left, rgba(170, 153, 85, 0) 0%, rgba(170, 153, 85, 0) 2%, rgba(170, 153, 85, .03) 2.25%),
+    -webkit-repeating-linear-gradient(left, rgba(255, 238, 170, 0) 0%, rgba(255, 238, 170, 0) .6%, rgba(255, 238, 170, .15) 1.2%),
+
+    linear-gradient(180deg, #a95 0%,
+    #fea 47%,
+    #dc8 53%,
+    #fea 100%);
 }
 
 .btn-gold:hover {
@@ -32,11 +52,27 @@ body {
   box-shadow: 0 0 10px rgba(201, 164, 0, 0.7);
 }
 
-/* Заголовки и таблицы */
-h1, h2, h3, h4 {
-  color: #d4af37; /* благородное золото */
-  letter-spacing: 1px;
+/* Headings and tables */
+h1, h2, h3 {
+  background: linear-gradient(90deg,
+    #b68c2f 0%,      /* тёплое старое золото */
+    #f1d77e 45%,     /* блик */
+    #d4af37 60%,     /* классическое золото */
+    #8c6b1f 100%);   /* патина */
+
   text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  margin: 0 auto 1rem auto;
+  animation: goldShimmer 6s ease-in-out infinite alternate;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .table-dark {
@@ -46,4 +82,26 @@ h1, h2, h3, h4 {
 
 .table-dark th {
   color: #d4af37 !important;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #111 !important;
+  border-bottom: 1px solid #3b3b3b;
+}
+
+.navbar a.nav-link {
+  color: #f5f5f5 !important;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar a.nav-link:hover {
+  color: #d4af37 !important;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+.navbar-brand {
+  color: #d4af37 !important;
+  font-weight: 600;
+  letter-spacing: 1px;
 }

@@ -20,11 +20,11 @@
           <td><%= item.quantity %></td>
           <td><%= number_to_currency(item.total, unit: "€") %></td>
           <td>
-            <%= button_to "Delete", order_item_path(item),
+            <%= button_to "DELETE", order_item_path(item),
             method: :delete,
             form: { data: { turbo: false } },
             data: { confirm: "Really???" },
-            class: "btn btn-outline-danger btn-sm" %>
+            class: "btn btn-gold btn-sm" %>
           </td>
         </tr>
       <% end %>
@@ -38,3 +38,6 @@
     <h4><strong>Total:</strong> <%= number_to_currency(@total_price, unit: "€") %></h4>
   </div>
 </div>
+<footer>
+  © <%= Time.now.year %> Private Sommelier. All rights reserved.
+</footer>
