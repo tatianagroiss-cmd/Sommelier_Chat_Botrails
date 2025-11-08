@@ -18,11 +18,11 @@
         </p>
 
         <div class="mt-4 d-flex justify-content-between">
-          <%= link_to "Back to Menu", menu_item_path, class: "btn btn-outline-secondary" %>
-         <%= button_to "Add to Order",
+          <%= link_to "Back to Menu", menu_items_path, class: "btn btn-gold" %>
+          <%= button_to "Add to Order",
             order_items_path(order_item: { menu_item_id: @menu_item.id, quantity: 1 }),
             method: :post,
-            class: "btn btn-primary" %>
+            class: "btn btn-gold" %>
             <%#onclick: "showAddedAlert()"%>
 
 

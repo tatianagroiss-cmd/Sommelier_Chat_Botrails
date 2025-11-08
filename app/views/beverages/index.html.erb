@@ -1,14 +1,13 @@
 <div class="container mt-5">
-  <h1 class="text-center mb-4 fw-bold border-bottom pb-2">Beverages Menu</h1>
+  <h1 class="text-center mb-4">Drinks</h1>
 
-  <table class="table table-hover align-middle">
-    <thead class="table-light">
+  <table class="table table-hover table-dark align-middle">
+    <thead class="table-dark">
       <tr>
-        <th>Name</th>
-
-        <th>Volume</th>
-        <th>Price (€)</th>
-        <th class="text-end">Order</th>
+        <th scope="col">Name</th>
+        <th scope="col">Volume</th>
+        <th scope="col">Price (€)</th>
+        <th  scope="col" class="text-end">Order</th>
       </tr>
     </thead>
 
@@ -23,7 +22,9 @@
             <%= form_with url: order_items_path, method: :post, local: true, class: "d-inline-flex align-items-center" do |f| %>
               <%= f.hidden_field :beverage_id, value: beverage.id %>
               <%= f.number_field :quantity, value: 1, min: 1, class: "form-control form-control-sm me-2", style: "width: 70px;" %>
-              <%= link_to "Add to Order", new_order_item_path(beverage_id: beverage.id), class: "btn btn-outline-primary btn-sm" %>
+              <%= button_to "Add to Order",
+              order_items_path(order_item: { beverage_id: beverage.id, quantity: 1 }),
+              class: "btn btn-gold btn-sm" %>
             <% end %>
           </td>
         </tr>

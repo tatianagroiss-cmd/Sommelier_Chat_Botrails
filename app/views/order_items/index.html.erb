@@ -3,7 +3,7 @@
 
 
  <div class="table-responsive">
-    <table class="table table-hover table-bordered align-middle shadow-sm">
+    <table class="table table-hover table-bordered align-middle shadow-sm table-dark">
       <thead class="table-dark text-center">
       <tr>
         <th scope="col">Name</th>
@@ -32,9 +32,9 @@
   </table>
 
   <div class="d-flex justify-content-between mt-4">
-    <%= link_to "Back to Menu", menu_items_path, class: "btn btn-outline-secondary" %>
-    <%= link_to "Back to Wine List", wines_path, class: "btn btn-outline-secondary" %>
-    <%= link_to "Back to Drinks", beverages_path, class: "btn btn-outline-secondary" %>
+    <%= link_to "Back to Menu", menu_items_path, class: "btn btn-gold" %>
+    <%= link_to "Back to Wine List", wines_path, class: "btn btn-gold" %>
+    <%= link_to "Back to Drinks", beverages_path, class: "btn btn-gold" %>
     <h4><strong>Total:</strong> <%= number_to_currency(@total_price, unit: "€") %></h4>
   </div>
 </div>

@@ -11,3 +11,39 @@
 @import "components/index";
 @import "pages/index";
 
+body {
+  background-color: #0b0b0b; /* матово-черный фон */
+  color: #f5f5f5; /* мягкий светлый текст */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Золотые кнопки */
+.btn-gold {
+  color: #f5f5f5;
+  background-color: transparent;
+  border: 2px solid #c9a400; /* золотая кайма */
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  background-color: #c9a400;
+  color: #0b0b0b;
+  box-shadow: 0 0 10px rgba(201, 164, 0, 0.7);
+}
+
+/* Заголовки и таблицы */
+h1, h2, h3, h4 {
+  color: #d4af37; /* благородное золото */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.table-dark {
+  background-color: #121212 !important;
+  color: #f1f1f1;
+}
+
+.table-dark th {
+  color: #d4af37 !important;
+}
