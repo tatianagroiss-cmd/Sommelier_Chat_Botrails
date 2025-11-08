@@ -58,12 +58,6 @@ body::before {
 
 /* Headings and tables */
 h1, h2, h3 {
-  background: linear-gradient(90deg,
-    #b68c2f 0%,      /* тёплое старое золото */
-    #f1d77e 45%,     /* блик */
-    #d4af37 60%,     /* классическое золото */
-    #8c6b1f 100%);   /* патина */
-
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-family: 'Fredericka the Great', serif;
