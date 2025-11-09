@@ -1,4 +1,38 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-5">
+  <div class="card text-center shadow-lg p-5 bg-black bg-opacity-75 rounded-4 mt-5"
+    style="max-width: 600px; border: 1px solid rgba(128,128,128,0.4); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 15px rgba(255,255,255,0.05); backdrop-filter: blur(6px);">
+
+    <h1 class="display-5 mb-3"
+      style="background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: 0 0 15px rgba(218,165,32,0.4);">
+      Private Sommelier
+    </h1>
+
+    <p class="lead mb-4" style="color: #e6d18a; text-shadow: 0 0 10px rgba(255,215,0,0.2);">
+      Let’s unfold the evening
+    </p>
 
 
+
+    <div class="d-flex justify-content-around mt-4">
+      <%= link_to "Explore Menu", menu_items_path, class: "btn btn-gold btn-lg px-4" %>
+      <button id="chat-placeholder" class="btn btn-gold btn-lg px-4">Chat with Sommelier</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("chat-placeholder").addEventListener("click", () => {
+      Swal.fire({
+        title: "Coming soon 🍇",
+        text: "Your personal sommelier chat experience is on its way!",
+        icon: "info",
+        confirmButtonColor: "#daa520"
+      });
+    });
+  });
+</script>
