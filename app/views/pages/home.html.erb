@@ -1,25 +1,32 @@
 
 <div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-5">
-  <div class="card text-center shadow-lg p-5 bg-black bg-opacity-75 rounded-4 mt-5"
-    style="max-width: 600px; border: 1px solid rgba(128,128,128,0.4); box-shadow: 0 10px 40px rgba(0,0,0,0.9), inset 0 0 15px rgba(255,255,255,0.05); backdrop-filter: blur(6px);">
+  <div class="card text-center shadow-lg p-5 bg-black bg-opacity-75 rounded-4 mt-5 d-flex flex-column justify-content-between"
+    style="max-width: 500px;
+      min-height: 500px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(160deg, #3b3b3bff, #040404ff, #171717ff);
+      box-shadow: 0 12px 70px rgba(0,0,0,0.9), inset 0 1px 5px rgba(255,255,255,0.15) inset 0 -3px 10px rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      ">
+    <div>
+      <h1 class="display-5 mb-3"
+        style="background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(218,165,32,0.4);">
+        Private Sommelier
+      </h1>
+    </div>
 
-    <h1 class="display-5 mb-3"
-      style="background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          text-shadow: 0 0 15px rgba(218,165,32,0.4);">
-      Private Sommelier
-    </h1>
-
-    <p class="lead mb-4" style="color: #e6d18a; text-shadow: 0 0 10px rgba(255,215,0,0.2);">
-      Let’s unfold the evening
-    </p>
-
-
+    <div>
+      <p class="lead mb-4" style="color: #e6d18a; text-shadow: 0 0 10px rgba(255,215,0,0.2);">
+        Let’s unfold the evening
+      </p>
+    </div>
 
     <div class="d-flex justify-content-around mt-4">
-      <%= link_to "Explore Menu", menu_items_path, class: "btn btn-gold btn-lg px-4" %>
-      <button id="chat-placeholder" class="btn btn-gold btn-lg px-4">Chat with Sommelier</button>
+      <%= link_to "Explore Menu", menu_items_path, class: "btn btn-gold btn-lg px-3" %>
+      <button id="chat-placeholder" class="btn btn-gold btn-lg px-3">Chat with Sommelier</button>
     </div>
   </div>
 </div>
