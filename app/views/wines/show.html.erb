@@ -26,7 +26,10 @@
 
         <div class="mt-4 d-flex justify-content-between">
           <%= link_to "Back to Wine List", wines_path, class: "btn btn-gold" %>
-          <%= link_to "Add to Order", new_order_item_path(wine_id: @wine.id), class: "btn btn-gold" %>
+          <%= button_to "Add to Order",
+            order_items_path(order_item: { wine_id: @wine.id, quantity: 1 }),
+            method: :post,
+            class: "btn btn-gold" %>
         </div>
 
       </div>
