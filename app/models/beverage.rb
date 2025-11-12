@@ -11,7 +11,7 @@ class Beverage < ApplicationRecord
   private
 
   def set_embedding
-    embedding = RubyLLM.embed("Product: #{name}. Description: #{description}")
+    embedding = RubyLLM.embed("Beverage: #{name}. Description: #{description}. Price: #{price}")
     update(embedding: embedding.vectors)
   end
 end
