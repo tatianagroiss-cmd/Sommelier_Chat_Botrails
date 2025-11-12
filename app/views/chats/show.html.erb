@@ -1,2 +1,34 @@
-<h1>Chats#show</h1>
-<p>Find me in app/views/chats/show.html.erb</p>
+<div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-5">
+  <div class="card text-light text-center shadow-lg p-5 bg-black bg-opacity-75 rounded-4 mt-4"
+       style="max-width: 600px; min-height: 500px;
+              border: 1px solid rgba(255,255,255,0.12);
+              background: linear-gradient(160deg, #3b3b3bff, #040404ff, #171717ff);
+              box-shadow: 0 12px 70px rgba(0,0,0,0.9), inset 0 1px 5px rgba(255,255,255,0.15), inset 0 -3px 10px rgba(0,0,0,0.6);
+              backdrop-filter: blur(8px);">
+
+    <!-- Sommelier name -->
+    <div>
+      <h1 class="display-6 mb-3"
+          style="background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
+                 -webkit-background-clip: text;
+                 -webkit-text-fill-color: transparent;
+                 text-shadow: 0 0 15px rgba(218,165,32,0.4);">
+        <%= @chat.mood.name %>
+      </h1>
+    </div>
+
+    <!-- short description -->
+    <p class="text small mb-4" style="color: #e6d18a;">
+      <%= @chat.mood.description %>
+    </p>
+
+    <!-- greeting -->
+    <div class="bg-dark rounded-4 p-4 shadow-sm"
+         style="border: 1px solid rgba(255,255,255,0.1); min-height: 200px;">
+      <p class="lead mb-0" style="color: #f0e5c2;">
+        <em>
+          “Welcome to your evening experience.
+          Let’s find the perfect pairing for this moment.”
+        </em>
+      </p>
+    </div>
