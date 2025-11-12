@@ -54,6 +54,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "neighbor"
 gem "ruby-openai"
+gem "ruby_llm", "~> 1.6.4"
 
 group :development, :test do
   gem "dotenv-rails"
