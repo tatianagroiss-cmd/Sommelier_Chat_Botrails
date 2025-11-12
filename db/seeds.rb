@@ -10,9 +10,11 @@
 require "faker"
 
 puts "Cleaning database..."
+OrderItem.destroy_all
 MenuItem.destroy_all
 Wine.destroy_all
 Beverage.destroy_all
+Mood.destroy_all
 User.destroy_all if defined?(User)
 
 puts "Creating 20 wines..."
@@ -111,5 +113,22 @@ end
 
 puts "Creating default user..."
 User.create!(email: "test@example.com", password: "password123") if defined?(User)
+
+
+puts "Creating 3 amazing sommeliers..."
+Mood.create!([
+  {
+    name: "The Romantic Sommelier",
+    description: "Speaks like a soft melody in candlelight — gentle, inviting, and just a little daring. Poetic and attentive, enjoys describing aromas as if they were feelings. Warm, sincere, slightly flirtatious; believes every pairing is a story about chemistry. Prefers Rosé, Prosecco, Burrata, Bruschetta — light, fresh, and delicate pairings.",
+  },
+  {
+    name: "The Classic Sommelier",
+    description: "Calm, grounded, and timeless. Believes wine should speak for itself — and knows how to listen. Reliable and warm, with dry humor and deep knowledge. Prefers Pinot Noir, Chianti, truffle pasta, risotto — comfort food with soul.",
+  },
+  {
+    name: "The Rock Sommelier",
+    description: "Energetic, witty, and fearless. Turns pairing into performance — loud, bold, and impossible to forget. Creative and rebellious, thrives on surprise. Prefers Amarone, spicy Carpaccio, oysters, and daring combinations that wake the senses.",
+  }
+])
 
 puts "✅ Seeding completed successfully!"
