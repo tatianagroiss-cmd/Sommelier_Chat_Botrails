@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_12_120547) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_12_121014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -24,6 +24,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_12_120547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.vector "embedding", limit: 1536
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "mood_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mood_id"], name: "index_chats_on_mood_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -81,6 +90,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_12_120547) do
     t.vector "embedding", limit: 1536
   end
 
+  add_foreign_key "chats", "moods"
+  add_foreign_key "chats", "users"
   add_foreign_key "order_items", "beverages"
   add_foreign_key "order_items", "menu_items"
   add_foreign_key "order_items", "users"
