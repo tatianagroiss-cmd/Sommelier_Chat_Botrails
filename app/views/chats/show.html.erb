@@ -35,6 +35,17 @@
         <button id="send-btn" class="btn btn-gold fw-bold px-4">Send</button>
       </div>
     </div>
+
+<!-- button add to order -->
+    <div class="mt-4">
+      <%= button_to "Send Selected Dishes to Order",
+            order_items_path,
+            method: :post,
+            class: "btn btn-gold btn-lg px-4 fw-bold",
+            form: { data: { turbo: false } } %>
+    </div>
+
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("user-input");
