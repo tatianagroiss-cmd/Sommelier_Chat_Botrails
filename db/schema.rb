@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_12_121542) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_12_140912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_12_121542) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "mood_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -102,7 +102,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_12_121542) do
   end
 
   add_foreign_key "chats", "moods"
-  add_foreign_key "chats", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "order_items", "beverages"
   add_foreign_key "order_items", "menu_items"
