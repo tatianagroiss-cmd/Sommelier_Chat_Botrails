@@ -17,18 +17,59 @@
       </h1>
     </div>
 
-    <!-- short description -->
-    <p class="text small mb-4" style="color: #e6d18a;">
-      <%= @chat.mood.description %>
-    </p>
-
-    <!-- greeting -->
-    <div class="bg-dark rounded-4 p-4 shadow-sm"
-         style="border: 1px solid rgba(255,255,255,0.1); min-height: 200px;">
-      <p class="lead mb-0" style="color: #f0e5c2;">
-        <em>
-          “Welcome to your evening experience.
-          Let’s find the perfect pairing for this moment.”
-        </em>
+    <!-- Chat  -->
+    <div id="chat-window"
+         class="text-start p-3 rounded-4 overflow-auto bg-dark bg-opacity-50"
+         style="height: 350px; border: 1px solid rgba(255,255,255,0.15); box-shadow: inset 0 0 10px rgba(0,0,0,0.5);">
+      <p class="text-warning-emphasis">
+        <em><%= @chat.mood.name %>:</em>
+        Welcome to your evening. Let’s unfold the night together 🍷
       </p>
     </div>
+
+    <!-- Enter field -->
+    <div class="mt-4">
+      <div class="input-group">
+        <input id="user-input" type="text" class="form-control bg-dark text-light border-secondary"
+               placeholder="Type your message...">
+        <button id="send-btn" class="btn btn-gold fw-bold px-4">Send</button>
+      </div>
+    </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+    const chatWindow = document.getElementById("chat-window");
+
+    function appendMessage(sender, text, color) {
+      const p = document.createElement("p");
+      p.innerHTML = `<strong style="color:${color};">${sender}:</strong> ${text}`;
+      chatWindow.appendChild(p);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function botReply(userText) {
+      const responses = [
+        "A fine choice — almost as refined as your taste.",
+        "Ah, that’s a mood that pairs beautifully with something Italian.",
+        "Let’s say this evening deserves bubbles, don’t you think?",
+        "Interesting... I have just the wine in mind",
+        "I admire such confidence. This might require a bold pairing."
+      ];
+      const reply = responses[Math.floor(Math.random() * responses.length)];
+      setTimeout(() => appendMessage("<%= @chat.mood.name %>", reply, "#daa520"), 600);
+    }
+
+    sendBtn.addEventListener("click", () => {
+      const text = input.value.trim();
+      if (text === "") return;
+      appendMessage("You", text, "#e6d18a");
+      input.value = "";
+      botReply(text);
+    });
+
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendBtn.click();
+    });
+  });
+</script>
