@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'messages/index'
+  get 'messages/create'
+  get 'chats/create'
+  get 'chats/show'
+  get 'moods/index'
+  get 'moods/create'
   devise_for :users
   root to: "pages#home"
   resources :menu_items, only: [:show, :index]

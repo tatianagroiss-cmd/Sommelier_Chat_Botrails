@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :order_items, dependent: :destroy
+  has_many :chats, dependent: :destroy
 end
