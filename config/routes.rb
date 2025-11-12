@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :beverages, only: [:show, :index]
   resources :wines, only: [:show, :index]
   resources :order_items
+  resources :moods, only: [:index, :create]
+  
+  resources :chats, only: [:create, :show] do
+    resources :messages, only: [:index, :create]
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
