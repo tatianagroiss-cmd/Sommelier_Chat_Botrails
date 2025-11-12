@@ -26,20 +26,5 @@
 
     <div class="d-flex justify-content-around mt-4">
       <%= link_to "Explore Menu", menu_items_path, class: "btn btn-gold btn-lg px-3" %>
-      <button id="chat-placeholder" class="btn btn-gold btn-lg px-3">Chat with Sommelier</button>
-    </div>
-  </div>
+      <%= link_to "Choose Your Sommelier", moods_path, class: "btn btn-gold btn-lg px-3" %>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("chat-placeholder").addEventListener("click", () => {
-      Swal.fire({
-        title: "Coming soon 🍇",
-        text: "Your personal sommelier chat experience is on its way!",
-        icon: "info",
-        confirmButtonColor: "#daa520"
-      });
-    });
-  });
-</script>
