@@ -1,10 +1,10 @@
 class ChatsController < ApplicationController
   def create
     @chat = Chat.create(
-      user: current_user,
+      user: user.last,
       mood_id: params[:mood_id]
     )
-    
+
     redirect_to chat_path(@chat)
 
   end
