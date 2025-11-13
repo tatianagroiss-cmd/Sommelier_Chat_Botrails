@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
   def index
-    @order_items = current_user.order_items.includes(:menu_item, :wine, :beverage)
+    @order_items = User.last.order_items.includes(:menu_item, :wine, :beverage)
     @total_price = @order_items.sum(:total)
   end
 
@@ -14,7 +14,7 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = OrderItem.new(order_item_params)
-    @order_item.user = current_user
+    @order_item.user = User.last
 
     if @order_item.save
       redirect_to order_items_path, notice: "Item added to your order."
