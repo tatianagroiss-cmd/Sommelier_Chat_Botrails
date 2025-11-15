@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-5">
+<div class="d-flex justify-content-center align-items-start  pt-5">
 
   <div class="card text-light text-center shadow-lg p-5 bg-black bg-opacity-75 rounded-4 mt-4"
        style="max-width: 600px; min-height: 500px;
@@ -20,7 +20,7 @@
 
     <!-- Chat window -->
     <div id="chat-window"
-         class="text-start p-3 rounded-4 overflow-auto bg-dark bg-opacity-50"
+         class="text-start p-3 rounded-4 overflow-auto"
          style="height: 350px;
                 border: 1px solid rgba(255,255,255,0.15);
                 box-shadow: inset 0 0 10px rgba(0,0,0,0.5);">
@@ -41,7 +41,7 @@
               class: "input-group" do |f| %>
 
         <%= f.text_field :content,
-             class: "form-control bg-dark text-light border-secondary",
+             class: "form-control text-light border-secondary",
              placeholder: "Type your message..." %>
 
         <button class="btn btn-gold fw-bold px-4" type="submit">

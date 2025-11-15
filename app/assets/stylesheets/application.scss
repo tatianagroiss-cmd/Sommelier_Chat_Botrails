@@ -27,6 +27,24 @@ body {
   padding-top: 70px;
 }
 
+.floating-card {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 3rem;
+
+  background: linear-gradient(160deg, #3b3b3bff, #040404ff, #171717ff);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 1.5rem;
+
+  box-shadow:
+    0 12px 70px rgba(0,0,0,0.9),
+    inset 0 1px 5px rgba(255,255,255,0.15),
+    inset 0 -3px 10px rgba(0,0,0,0.6);
+
+  backdrop-filter: blur(8px);
+  color: #fff;
+}
+
 /* Gold buttons */
 .btn-gold {
   background: -webkit-gradient(linear, left top, left bottom, from(#a95), to(#fea));
@@ -60,6 +78,13 @@ h1, h2, h3 {
   display: block;
   margin: 0 auto 1rem auto;
   animation: goldShimmer 6s ease-in-out infinite alternate;
+}
+
+.heading-gold {
+  background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(218,165,32,0.4);
 }
 
 @keyframes goldShimmer {

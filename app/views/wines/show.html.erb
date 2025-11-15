@@ -1,22 +1,25 @@
-  <div class="container my-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
+<div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-1">
+  <div class="floating-card p-5 mx-auto"
+              style="max-width: 800px; width: 100%;
+              border: 1px solid rgba(255,255,255,0.15);
+              background: rgba(0,0,0,0.75);
+              border-radius: 20px;">
 
-        <h2 class="fw-bold mb-4 text-center border-bottom pb-2">
+        <h2 class="fw-bold mb-4 text-center border-bottom pb-2 heading-gold">
           <%= @wine.name %>
         </h2>
 
         <dl class="row mb-4">
-          <dt class="col-sm-4 text-muted">Category</dt>
+          <dt class="col-sm-4">Category</dt>
           <dd class="col-sm-8"><%= @wine.category %></dd>
 
-          <dt class="col-sm-4 text-muted">Country</dt>
+          <dt class="col-sm-4">Country</dt>
           <dd class="col-sm-8"><%= @wine.country %></dd>
 
-          <dt class="col-sm-4 text-muted">Volume</dt>
+          <dt class="col-sm-4">Volume</dt>
           <dd class="col-sm-8"><%= @wine.volume.presence || "0.75 l" %></dd>
 
-          <dt class="col-sm-4 text-muted">Price</dt>
+          <dt class="col-sm-4">Price</dt>
           <dd class="col-sm-8">€ <%= number_with_precision(@wine.price, precision: 2) %></dd>
         </dl>
 
@@ -31,7 +34,5 @@
             method: :post,
             class: "btn btn-gold" %>
         </div>
-
-      </div>
-    </div>
   </div>
+</div>

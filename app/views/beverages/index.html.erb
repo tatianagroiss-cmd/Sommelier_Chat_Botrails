@@ -1,39 +1,35 @@
-<div class="container mt-3">
-  <h1 class="display-5 mb-3"
-        style="background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(218,165,32,0.4);">
-          Drinks
-    </h1>
+<div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-1">
+  <div class="floating-card p-5 mx-auto"
+              style="max-width: 1100px; width: 100%;
+              border: 1px solid rgba(255,255,255,0.15);
+              background: rgba(0,0,0,0.75);
+              border-radius: 20px;">
 
-  <table class="table table-hover table-dark align-middle">
-    <thead class="table-dark">
+    <div class="container mt-3">
+      <h1 class="display-5 mb-3 heading-gold">Drinks</h1>
 
-    </thead>
+      <table class="table table-hover table-dark align-middle">
+        <thead class="table-dark">
+        </thead>
 
-    <tbody>
-      <% @beverages.each do |beverage| %>
-        <tr>
-          <td><%= beverage.name %></td>
-          <td>€ <%= number_with_precision(beverage.price, precision: 0) %></td>
-          <td class="text-end">
-            <%= form_with url: order_items_path, method: :post, local: true, class: "d-inline-flex align-items-center" do |f| %>
-              <%= f.hidden_field :beverage_id, value: beverage.id %>
-              <%= f.number_field :quantity, value: 1, min: 1, class: "form-control form-control-sm me-2", style: "width: 50px;" %>
-              <%= button_to order_items_path, method: :post, class: "btn btn-gold btn-sm" do %>
-                <%= hidden_field_tag "order_item[beverage_id]", beverage.id %>
-                <%= hidden_field_tag "order_item[quantity]", 1 %>
-                Add to Order
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<footer>
-  © <%= Time.now.year %> Private Sommelier. All rights reserved.
-</footer>
+        <tbody>
+          <% @beverages.each do |beverage| %>
+            <tr>
+              <td><%= beverage.name %></td>
+              <td>€ <%= number_with_precision(beverage.price, precision: 0) %></td>
+              <td class="text-end">
+                <%= form_with url: order_items_path, method: :post, local: true, class: "d-inline-flex align-items-center" do |f| %>
+                  <%= f.hidden_field :beverage_id, value: beverage.id %>
+                  <%= f.number_field :quantity, value: 1, min: 1, class: "form-control form-control-sm me-2", style: "width: 50px;" %>
+                  <%= button_to order_items_path, method: :post, class: "btn btn-gold btn-sm" do %>
+                    <%= hidden_field_tag "order_item[beverage_id]", beverage.id %>
+                    <%= hidden_field_tag "order_item[quantity]", 1 %>
+                    Add to Order
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
