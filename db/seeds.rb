@@ -10,6 +10,7 @@
 require "faker"
 
 puts "Cleaning database..."
+Chat.destroy_all
 OrderItem.destroy_all
 MenuItem.destroy_all
 Wine.destroy_all
@@ -84,6 +85,32 @@ ITALIAN_DISHES.each do |dish|
     description: "Authentic Italian dish crafted to complement premium wines. #{Faker::Food.description}",
     price: rand(12.0..28.0).round(2),
   )
+end
+
+puts "Assigning images to Italian dishes..."
+
+IMAGE_MAP = {
+  "Bruschetta al Pomodoro"      => "bruschetta.png",
+  "Tagliatelle al Tartufo"      => "tagliatelle_tartufo.png",
+  "Risotto ai Funghi Porcini"   => "risotto_funghi.png",
+  "Carpaccio di Manzo"          => "carpaccio_manzo.png",
+  "Lasagna alla Bolognese"      => "lasagna_bolognese.png",
+  "Melanzane alla Parmigiana"   => "Melanzane_alla_parmigiana_gwt.png",
+  "Spaghetti alle Vongole"      => "spaghetti_vongole.png",
+  "Gnocchi al Gorgonzola"       => "gnocchi_gorgonzola.png",
+  "Vitello Tonnato"             => "vitello_tonnato.png",
+  "Tiramisu Classico"           => "tiramisu.png"
+}
+
+IMAGE_MAP.each do |dish, file|
+  item = MenuItem.find_by(name: dish)
+
+  if item
+    item.update!(image_name: file)
+    puts "✔️ Set image for #{dish}"
+  else
+    puts "⚠️ Dish not found: #{dish}"
+  end
 end
 
 puts "Creating 10 non-alcoholic beverages..."

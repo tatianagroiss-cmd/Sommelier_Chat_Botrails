@@ -1,7 +1,7 @@
 class ChatsController < ApplicationController
   def create
     @chat = Chat.create(
-      user: user.last,
+      user: User.last,
       mood_id: params[:mood_id]
     )
 

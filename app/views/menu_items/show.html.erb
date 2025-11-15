@@ -1,47 +1,35 @@
-<div class="container my-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card bg-black bg-opacity-75 text-light shadow-lg rounded-4 p-4"
+       style="max-width: 900px; border: 1px solid rgba(255,255,255,0.15);">
+    <div class="row g-4 align-items-center">
 
-        <h2 class="fw-bold mb-4 text-center border-bottom pb-2">
+      <!-- LEFT SIDE: TEXT -->
+      <div class="col-md-8">
+
+        <div class="card-body">
+          <h2 class="fw-bold mb-3 text-center text-uppercase">
           <%= @menu_item.name %>
-        </h2>
-
-        <dl class="row mb-4">
-
-
-          <dt class="col-sm-4 text-muted">Price</dt>
-          <dd class="col-sm-8">€ <%= number_with_precision(@menu_item.price, precision: 2) %></dd>
-        </dl>
-
-        <p class="lead">
-          <%= @menu_item.description.presence || "No description available yet." %>
-        </p>
-
-        <div class="mt-4 d-flex justify-content-between">
-          <%= link_to "Back to Menu", menu_items_path, class: "btn btn-gold" %>
-          <%= button_to "Add to Order",
-            order_items_path(order_item: { menu_item_id: @menu_item.id, quantity: 1 }),
-            method: :post,
-            class: "btn btn-gold" %>
-            <%#onclick: "showAddedAlert()"%>
-
-
+          </h2>
+          <p class="lead">
+          <%= @menu_item.description.presence || "No description available." %>
+          </p>
+          <p class="fs-5 fw-semibold mb-3">€ <%= @menu_item.price %></p>
         </div>
 
       </div>
+
+      <!-- RIGHT SIDE: IMAGE -->
+        <div class="col-md-4 text-center">
+          <% if @menu_item.image_name.present? %>
+            <%= image_tag asset_path(@menu_item.image_name),
+                class: "img-fluid rounded-3 float-end ms-3 shadow",
+                style: "max-width: 220px; height: auto;",
+                alt: @menu_item.name %>
+          <% else %>
+            <p class="text-muted">No image available</p>
+          <% end %>
+        </div>
+
     </div>
   </div>
-
-<%# <script>
-function showAddedAlert() {
-Swal.fire({
-title: 'Added to Order!',
-text: 'Your meal has been added successfully.',
-icon: 'success',
-
-})
-}'
-</script> %>
-<footer>
-  © <%= Time.now.year %> Private Sommelier. All rights reserved.
-</footer>
+</div>

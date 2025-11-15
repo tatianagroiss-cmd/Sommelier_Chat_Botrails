@@ -1,86 +1,65 @@
 <div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-5">
+
   <div class="card text-light text-center shadow-lg p-5 bg-black bg-opacity-75 rounded-4 mt-4"
        style="max-width: 600px; min-height: 500px;
               border: 1px solid rgba(255,255,255,0.12);
               background: linear-gradient(160deg, #3b3b3bff, #040404ff, #171717ff);
-              box-shadow: 0 12px 70px rgba(0,0,0,0.9), inset 0 1px 5px rgba(255,255,255,0.15), inset 0 -3px 10px rgba(0,0,0,0.6);
+              box-shadow: 0 12px 70px rgba(0,0,0,0.9),
+                          inset 0 1px 5px rgba(255,255,255,0.15),
+                          inset 0 -3px 10px rgba(0,0,0,0.6);
               backdrop-filter: blur(8px);">
 
-    <!-- Sommelier name -->
-    <div>
-      <h1 class="display-6 mb-3"
-          style="background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
-                 -webkit-background-clip: text;
-                 -webkit-text-fill-color: transparent;
-                 text-shadow: 0 0 15px rgba(218,165,32,0.4);">
-        <%= @chat.mood.name %>
-      </h1>
-    </div>
+    <!-- Sommelier Name -->
+    <h1 class="display-6 mb-3"
+        style="background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+               text-shadow: 0 0 15px rgba(218,165,32,0.4);">
+      <%= @chat.mood.name %>
+    </h1>
 
-    <!-- Chat  -->
+    <!-- Chat window -->
     <div id="chat-window"
          class="text-start p-3 rounded-4 overflow-auto bg-dark bg-opacity-50"
-         style="height: 350px; border: 1px solid rgba(255,255,255,0.15); box-shadow: inset 0 0 10px rgba(0,0,0,0.5);">
-      <p class="text-warning-emphasis">
-        <em><%= @chat.mood.name %>:</em>
-        Welcome to your evening. Let’s unfold the night together 🍷
-      </p>
+         style="height: 350px;
+                border: 1px solid rgba(255,255,255,0.15);
+                box-shadow: inset 0 0 10px rgba(0,0,0,0.5);">
+
+      <% @chat.messages.each do |message| %>
+        <p class="<%= message.role == 'assistant' ? 'text-warning' : 'text-info' %>">
+          <strong><%= message.role.capitalize %>:</strong>
+          <%= message.content %>
+        </p>
+      <% end %>
     </div>
 
-    <!-- Enter field -->
+    <!-- Form -->
     <div class="mt-4">
-      <div class="input-group">
-        <input id="user-input" type="text" class="form-control bg-dark text-light border-secondary"
-               placeholder="Type your message...">
-        <button id="send-btn" class="btn btn-gold fw-bold px-4">Send</button>
-      </div>
+
+      <%= form_with model: [@chat, Message.new],
+              local: true,
+              class: "input-group" do |f| %>
+
+        <%= f.text_field :content,
+             class: "form-control bg-dark text-light border-secondary",
+             placeholder: "Type your message..." %>
+
+        <button class="btn btn-gold fw-bold px-4" type="submit">
+          Send
+        </button>
+
+      <% end %>
+
     </div>
 
-<!-- button add to order -->
+    <!-- Add to Order -->
     <div class="mt-4">
-      <%= button_to "Send Selected Dishes to Order",
+      <%= button_to "Add to Order",
             order_items_path,
             method: :post,
             class: "btn btn-gold btn-lg px-4 fw-bold",
             form: { data: { turbo: false } } %>
     </div>
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const input = document.getElementById("user-input");
-    const sendBtn = document.getElementById("send-btn");
-    const chatWindow = document.getElementById("chat-window");
-
-    function appendMessage(sender, text, color) {
-      const p = document.createElement("p");
-      p.innerHTML = `<strong style="color:${color};">${sender}:</strong> ${text}`;
-      chatWindow.appendChild(p);
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-
-    function botReply(userText) {
-      const responses = [
-        "A fine choice — almost as refined as your taste.",
-        "Ah, that’s a mood that pairs beautifully with something Italian.",
-        "Let’s say this evening deserves bubbles, don’t you think?",
-        "Interesting... I have just the wine in mind",
-        "I admire such confidence. This might require a bold pairing."
-      ];
-      const reply = responses[Math.floor(Math.random() * responses.length)];
-      setTimeout(() => appendMessage("<%= @chat.mood.name %>", reply, "#daa520"), 600);
-    }
-
-    sendBtn.addEventListener("click", () => {
-      const text = input.value.trim();
-      if (text === "") return;
-      appendMessage("You", text, "#e6d18a");
-      input.value = "";
-      botReply(text);
-    });
-
-    input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendBtn.click();
-    });
-  });
-</script>
+  </div>
+</div>
