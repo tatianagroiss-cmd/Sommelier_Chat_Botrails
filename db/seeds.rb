@@ -107,9 +107,9 @@ IMAGE_MAP.each do |dish, file|
 
   if item
     item.update!(image_name: file)
-    puts "✔️ Set image for #{dish}"
+    puts "Set image for #{dish}"
   else
-    puts "⚠️ Dish not found: #{dish}"
+    puts "Dish not found: #{dish}"
   end
 end
 

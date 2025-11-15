@@ -30,6 +30,16 @@
           <% end %>
         </div>
 
+      <div class="mt-4 d-flex justify-content-between">
+          <%= link_to "Back to Menu", menu_items_path, class: "btn btn-gold" %>
+          <%= button_to "Add to Order",
+            order_items_path(order_item: { menu_item_id: @menu_item.id, quantity: 1 }),
+            method: :post,
+            class: "btn btn-gold" %>
+      </div>
+
+
+
     </div>
   </div>
 </div>
