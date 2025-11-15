@@ -20,13 +20,18 @@
 
     <div>
       <p class="lead mb-4" style="color: #e6d18a; text-shadow: 0 0 10px rgba(255,215,0,0.2);">
-        Let’s unfold the evening
+        Let’s unfold the evening...
       </p>
     </div>
 
-    <div class="d-flex justify-content-around gap-3 mt-4">
-      <%= link_to "Explore Menu", menu_items_path, class: "btn btn-gold btn-lg px-3 flex-fill", style: "max-width: 250px;" %>
-      <%= link_to "Choose Your Sommelier", moods_path, class: "btn btn-gold btn-lg px-3 flex-fill", style: "max-width: 250px;" %>
-    </div>
+    <<div class="d-grid gap-3 col-8 mx-auto" style="max-width: 600px; margin: 0 auto;">
+  <%= link_to "Explore Menu",
+      menu_items_path,
+      class: "btn btn-gold btn-lg" %>
+
+  <%= link_to "Choose Your Sommelier",
+      moods_path,
+      class: "btn btn-gold btn-lg" %>
+</div>
   </div>
 </div>
