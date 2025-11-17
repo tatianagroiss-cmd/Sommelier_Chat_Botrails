@@ -1,39 +1,46 @@
-<div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-1">
+<div class="d-flex justify-content-center align-items-start bg-dark pt-1">
   <div class="floating-card" style="width: 100%;" >
+    <div class="row g-4 align-items-center">
 
-        <h2 class="fw-bold mb-4 text-center border-bottom pb-2 heading-gold">
-          <%= @wine.name %>
-        </h2>
+<!-- LEFT SIDE: TEXT -->
+      <div class="col-md-8">
+        <div class="card-body">
 
-        <dl class="row mb-4">
-          <dt class="col-sm-4">Category</dt>
-          <dd class="col-sm-8"><%= @wine.category %></dd>
+          <h2 class="fw-bold mb-3 text-center text-uppercase heading-gold"><%= @wine.name %></h2>
 
-          <dt class="col-sm-4">Country</dt>
-          <dd class="col-sm-8"><%= @wine.country %></dd>
+          <dl class="row mb-4">
+            <dt class="col-sm-4">Category</dt>
+            <dd class="col-sm-8"><%= @wine.category %></dd>
 
-          <dt class="col-sm-4">Volume</dt>
-          <dd class="col-sm-8"><%= @wine.volume.presence || "0.75 l" %></dd>
+            <dt class="col-sm-4">Country</dt>
+            <dd class="col-sm-8"><%= @wine.country %></dd>
 
-          <dt class="col-sm-4">Price</dt>
-          <dd class="col-sm-8">€ <%= number_with_precision(@wine.price, precision: 2) %></dd>
-        </dl>
+            <dt class="col-sm-4">Volume</dt>
+            <dd class="col-sm-8"><%= @wine.volume.presence || "0.75 l" %></dd>
 
+            <dt class="col-sm-4">Price</dt>
+            <dd class="col-sm-8">€ <%= number_with_precision(@wine.price, precision: 2) %></dd>
+          </dl>
+
+          <p class="lead mt-4">
+              <%= @wine.description %>
+          </p>
+        </div>
+      </div>
+
+<!-- RIGHT SIDE: IMAGE -->
         <div class="col-md-4 text-center">
-          <% if @wine.image.present? %>
-            <%= image_tag asset_path(@wine.image),
-                class: "img-fluid rounded-3 float-end ms-3 shadow",
-                style: "max-width: 220px; height: auto;",
-                alt: @wine.name %>
-          <% else %>
-            <p class="text-muted">No image available</p>
-          <% end %>
+            <% if @wine.image.present? %>
+              <%= image_tag asset_path(@wine.image),
+                  class: "img-fluid rounded-3 ms-3 shadow",
+                  style: "max-width: 260px; height: auto;",
+                  alt: @wine.name %>
+            <% else %>
+              <p class="text-muted">No image available</p>
+            <% end %>
         </div>
 
-
-        <p class="lead">
-          <%= @wine.description.presence || "No description available yet." %>
-        </p>
+<!-- BOTTOM: BUTTONS -->
 
         <div class="mt-4 d-flex justify-content-between">
           <%= link_to "Back to Wine List", wines_path, class: "btn btn-gold" %>
@@ -42,5 +49,6 @@
             method: :post,
             class: "btn btn-gold" %>
         </div>
+   </div>
   </div>
 </div>

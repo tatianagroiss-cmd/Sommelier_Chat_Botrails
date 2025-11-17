@@ -93,28 +93,28 @@ end
 puts "Assigning images to wines..."
 
 WINE_IMAGE_MAP = {
-  "Hiedler Grüner Veltliner Kamptal"                => "white.jpg",
-  "Bründlmayer Riesling Heiligenstein"              => "white.jpg",
-  "Markowitsch Pinot Noir Carnuntum"                => "red.jpg",
-  "Pöckl Admiral Neusiedlersee"                     => "red.jpg",
-  "Schloss Gobelsburg Brut Reserve"                 => "sparkling.jpg",
+  "Hiedler Grüner Veltliner Kamptal"                => "white.png",
+  "Bründlmayer Riesling Heiligenstein"              => "white.png",
+  "Markowitsch Pinot Noir Carnuntum"                => "red.png",
+  "Pöckl Admiral Neusiedlersee"                     => "red.png",
+  "Schloss Gobelsburg Brut Reserve"                 => "sparkling.png",
 
-  "Château Margaux Grand Cru"                       => "premium.jpg",
-  "Domaine Leflaive Puligny-Montrachet"             => "white.jpg",
-  "Château Mouton Rothschild Pauillac"              => "premium.jpg",
-  "Château d´Yquem Sauternes"                       => "dessert.jpg",
-  "Château Haut-Brion Pessac-Léognan"               => "premium.jpg",
-  "Louis Jadot Chardonnay Bourgogne"                => "white.jpg",
-  "Château de Beaucastel Châteauneuf-du-Pape"       => "red.jpg",
-  "Domaines Ott Rosé Côtes de Provence"             => "rose.jpg",
-  "Billecart-Salmon Brut Réserve Champagne"         => "sparkling.jpg",
-  "Chablis Premier Cru Montmains"                   => "white.jpg",
+  "Château Margaux Grand Cru"                       => "premium.png",
+  "Domaine Leflaive Puligny-Montrachet"             => "white.png",
+  "Château Mouton Rothschild Pauillac"              => "premium.png",
+  "Château d´Yquem Sauternes"                       => "dessert.png",
+  "Château Haut-Brion Pessac-Léognan"               => "premium.png",
+  "Louis Jadot Chardonnay Bourgogne"                => "white.png",
+  "Château de Beaucastel Châteauneuf-du-Pape"       => "red.png",
+  "Domaines Ott Rosé Côtes de Provence"             => "rose.png",
+  "Billecart-Salmon Brut Réserve Champagne"         => "sparkling.png",
+  "Chablis Premier Cru Montmains"                   => "white.png",
 
-  "Antinori Tignanello Toscana"                     => "red.jpg",
-  "Gaja Barbaresco Piemonte"                        => "premium.jpg",
-  "Planeta Chardonnay Sicilia"                      => "white.jpg",
-  "Frescobaldi Nipozzano Chianti Rufina Riserva"    => "red.jpg",
-  "Ca’ dei Frati Lugana I Frati DOC"                => "white.jpg"
+  "Antinori Tignanello Toscana"                     => "red.png",
+  "Gaja Barbaresco Piemonte"                        => "premium.png",
+  "Planeta Chardonnay Sicilia"                      => "white.png",
+  "Frescobaldi Nipozzano Chianti Rufina Riserva"    => "red.png",
+  "Ca’ dei Frati Lugana I Frati DOC"                => "white.png"
 }
 
 WINE_IMAGE_MAP.each do |wine_name, file|

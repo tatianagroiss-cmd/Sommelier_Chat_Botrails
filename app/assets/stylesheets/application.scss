@@ -15,8 +15,9 @@ body {
   background: radial-gradient(circle at top left, #1c1c1c 0%, #0a0a0a 40%, #000000 100%);
   background-attachment: fixed;
   background-color: #0b0b0b;
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  min-height: 100vh;
   color: #f8f8f8;
   font-family: 'Story Script';
   letter-spacing: 2.5px;
