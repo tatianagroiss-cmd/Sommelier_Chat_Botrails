@@ -23,6 +23,10 @@
           <dd class="col-sm-8">€ <%= number_with_precision(@wine.price, precision: 2) %></dd>
         </dl>
 
+        <div class="wine-card">
+          <%= image_tag @wine.image_name, class: "wine-image" %>
+        </div>
+
         <p class="lead">
           <%= @wine.description.presence || "No description available yet." %>
         </p>

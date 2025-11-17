@@ -1,7 +1,7 @@
 class Wine < ApplicationRecord
   has_many :order_items
-  has_neighbors :embedding
-  after_create :set_embedding
+  #has_neighbors :embedding
+  #after_create :set_embedding
 
   validates :name, presence: true
   validates :description, length: { maximum: 150 }
@@ -11,9 +11,9 @@ class Wine < ApplicationRecord
 
   private
 
-  def set_embedding
-    embedding = RubyLLM.embed("Wine: #{name}. Description: #{description}. Price: #{price}. Category: #{category}. Country: #{country}")
-    update(embedding: embedding.vectors)
-  end
+  #def set_embedding
+    #embedding = RubyLLM.embed("Wine: #{name}. Description: #{description}. Price: #{price}. Category: #{category}. Country: #{country}")
+    #update(embedding: embedding.vectors)
+  #end
 
 end

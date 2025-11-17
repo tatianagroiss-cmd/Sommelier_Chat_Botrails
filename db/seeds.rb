@@ -51,17 +51,81 @@ ITALIAN_WINES = [
 
 WINES = AUSTRIAN_WINES + FRENCH_WINES + ITALIAN_WINES
 
-VOLUMES = ["1/8l", "1/4l", "0.75l"]
+def wine_description(category)
+  case category.downcase
+  when "white"
+    notes = Faker::Coffee.notes
+    "Fresh and vibrant with #{notes}. Crisp acidity, mineral backbone and a clean finish."
+
+  when "red"
+    notes = Faker::Coffee.notes
+    "Rich and structured, showing #{notes}. Fine tannins and a long, elegant finish."
+
+  when "sparkling"
+    notes = Faker::Coffee.notes
+    "Light and lively with #{notes}. Delicate bubbles and a refreshing, festive character."
+
+  when "rosé"
+    notes = Faker::Coffee.notes
+    "Elegant and refreshing with #{notes}. Soft fruit notes and a smooth, summery finish."
+
+  when "dessert"
+    notes = Faker::Coffee.notes
+    "Luscious and aromatic with #{notes}. Sweet, silky texture and a lingering golden finish."
+
+  else # premium / fallback
+    notes = Faker::Coffee.notes
+    "Complex and refined with #{notes}. Deep layers of flavor and remarkable balance."
+  end
+end
 
 WINES.each do |wine|
   Wine.create!(
     name: wine[:name],
     category: wine[:category],
     country: wine[:country],
-    description: Faker::Lorem.sentence(word_count: 10),
+    description: wine_description(wine[:category]),
     price: wine[:price],
-    volume: VOLUMES.sample
+    volume: "0.75l"
   )
+end
+
+puts "Assigning images to wines..."
+
+WINE_IMAGE_MAP = {
+  "Hiedler Grüner Veltliner Kamptal"                => "white.jpg",
+  "Bründlmayer Riesling Heiligenstein"              => "white.jpg",
+  "Markowitsch Pinot Noir Carnuntum"                => "red.jpg",
+  "Pöckl Admiral Neusiedlersee"                     => "red.jpg",
+  "Schloss Gobelsburg Brut Reserve"                 => "sparkling.jpg",
+
+  "Château Margaux Grand Cru"                       => "premium.jpg",
+  "Domaine Leflaive Puligny-Montrachet"             => "white.jpg",
+  "Château Mouton Rothschild Pauillac"              => "premium.jpg",
+  "Château d´Yquem Sauternes"                       => "dessert.jpg",
+  "Château Haut-Brion Pessac-Léognan"               => "premium.jpg",
+  "Louis Jadot Chardonnay Bourgogne"                => "white.jpg",
+  "Château de Beaucastel Châteauneuf-du-Pape"       => "red.jpg",
+  "Domaines Ott Rosé Côtes de Provence"             => "rose.jpg",
+  "Billecart-Salmon Brut Réserve Champagne"         => "sparkling.jpg",
+  "Chablis Premier Cru Montmains"                   => "white.jpg",
+
+  "Antinori Tignanello Toscana"                     => "red.jpg",
+  "Gaja Barbaresco Piemonte"                        => "premium.jpg",
+  "Planeta Chardonnay Sicilia"                      => "white.jpg",
+  "Frescobaldi Nipozzano Chianti Rufina Riserva"    => "red.jpg",
+  "Ca’ dei Frati Lugana I Frati DOC"                => "white.jpg"
+}
+
+WINE_IMAGE_MAP.each do |wine_name, file|
+  wine = Wine.find_by(name: wine_name)
+
+  if wine
+    wine.update!(image: file)
+    puts "Set image for #{wine_name}"
+  else
+    puts "Wine not found: #{wine_name}"
+  end
 end
 
 puts "Creating 10 Italian dishes..."
@@ -79,11 +143,38 @@ ITALIAN_DISHES = [
   "Tiramisu Classico"
 ]
 
+def italian_description(dish)
+  case dish
+  when /Bruschetta/i
+    "Toasted Italian bread topped with fresh tomatoes, basil and extra virgin olive oil."
+  when /Tagliatelle/i
+    "Handmade pasta with aromatic truffle sauce and a rich, earthy aroma."
+  when /Risotto/i
+    "Creamy risotto cooked slowly with porcini mushrooms and Parmesan."
+  when /Carpaccio/i
+    "Thin slices of premium beef served with lemon, olive oil and Parmigiano."
+  when /Lasagna/i
+    "Layers of fresh pasta, slow-cooked ragù, béchamel and melted cheese."
+  when /Melanzane/i
+    "Classic oven-baked eggplant with tomato, mozzarella and herbs."
+  when /Spaghetti/i
+    "Traditional spaghetti tossed with white wine, garlic and fresh clams."
+  when /Gnocchi/i
+    "Soft potato gnocchi in a creamy Gorgonzola sauce."
+  when /Vitello/i
+    "Tender veal served with a smooth tuna-caper sauce."
+  when /Tiramisu/i
+    "Classic Italian dessert with mascarpone, espresso and cocoa."
+  else
+    "Authentic Italian dish crafted with premium ingredients."
+  end
+end
+
 ITALIAN_DISHES.each do |dish|
   MenuItem.create!(
     name: dish,
-    description: "Authentic Italian dish crafted to complement premium wines. #{Faker::Food.description}",
-    price: rand(12.0..28.0).round(2),
+    description: italian_description(dish),
+    price: rand(12.0..28.0).round / 2.0,
   )
 end
 
@@ -133,7 +224,7 @@ DRINKS.each do |drink|
     name: drink,
     category: "Non-Alcoholic",
     description: "Refreshing Austrian beverage served chilled. #{Faker::Lorem.sentence(word_count: 8)}",
-    price: rand(2.5..5.5).round(2),
+    price: rand(2.0..5.0).round / 2.0,
     volume: drink.scan(/\d+(\.\d+)?l/).flatten.first || "0.25l"
   )
 end
