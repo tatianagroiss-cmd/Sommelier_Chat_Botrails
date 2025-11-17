@@ -1,9 +1,5 @@
 <div class="d-flex justify-content-center align-items-start vh-100 bg-dark pt-1">
-  <div class="floating-card p-5 mx-auto"
-              style="max-width: 800px; width: 100%;
-              border: 1px solid rgba(255,255,255,0.15);
-              background: rgba(0,0,0,0.75);
-              border-radius: 20px;">
+  <div class="floating-card" style="width: 100%;" >
 
         <h2 class="fw-bold mb-4 text-center border-bottom pb-2 heading-gold">
           <%= @wine.name %>
@@ -23,9 +19,17 @@
           <dd class="col-sm-8">€ <%= number_with_precision(@wine.price, precision: 2) %></dd>
         </dl>
 
-        <div class="wine-card">
-          <%= image_tag @wine.image_name, class: "wine-image" %>
+        <div class="col-md-4 text-center">
+          <% if @wine.image.present? %>
+            <%= image_tag asset_path(@wine.image),
+                class: "img-fluid rounded-3 float-end ms-3 shadow",
+                style: "max-width: 220px; height: auto;",
+                alt: @wine.name %>
+          <% else %>
+            <p class="text-muted">No image available</p>
+          <% end %>
         </div>
+
 
         <p class="lead">
           <%= @wine.description.presence || "No description available yet." %>

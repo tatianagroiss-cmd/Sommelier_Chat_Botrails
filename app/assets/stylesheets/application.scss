@@ -47,7 +47,7 @@ body {
 
 /* Gold buttons */
 .btn-gold {
-  background: -webkit-gradient(linear, left top, left bottom, from(#a95), to(#fea));
+  background: linear-gradient(to bottom, #a95, #fea);
 }
 
 .btn-gold:hover {
@@ -93,8 +93,8 @@ h1, h2, h3 {
 }
 
 .table-dark {
-  background-color: #121212 !important;
-  color: #f1f1f1;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
 }
 
 .table-dark th {
