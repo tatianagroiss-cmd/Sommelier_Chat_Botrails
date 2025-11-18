@@ -5,18 +5,16 @@ class ChatsController < ApplicationController
       mood_id: params[:mood_id]
     )
 
-  client = RubyLLM.chat(model: "gpt-4o-mini")
-  starter_prompt = build_starter_prompt(@chat.mood)
+      client = RubyLLM.chat(model: "gpt-4o-mini")
+      starter_prompt = build_starter_prompt(@chat.mood)
 
-  answer = client.ask(starter_prompt)
+      answer = client.ask(starter_prompt)
 
-  @chat.messages.create!(
-    role: "assistant",
-    content: answer.content
-  )
-
-    redirect_to chat_path(@chat)
-
+      @chat.messages.create!(
+        role: "assistant",
+        content: answer.content
+      )
+        redirect_to chat_path(@chat)
   end
 
   def show
@@ -29,31 +27,31 @@ class ChatsController < ApplicationController
 
     return redirect_to chat_path(@chat), alert: "No assistant reply found." if last_reply.blank?
 
-    confirmed_block = last_reply.split("Confirmed:").last
-    return redirect_to chat_path(@chat), alert: "No confirmed items." unless confirmed_block
+    confirmed_line = last_reply.lines.find { |l| l.strip.start_with?("Confirmed:") }
 
-    confirmed_lines = confirmed_block.split("\n").map(&:strip)
-                                    .select { |l| l.match?(/—\s*\d/) }
+    return redirect_to chat_path(@chat), alert: "No confirmed items." unless confirmed_line
 
-    return redirect_to chat_path(@chat), alert: "No valid confirmed items." if confirmed_lines.empty?
+    item_text = confirmed_line.sub("Confirmed:", "").strip
 
-    confirmed_lines.each do |line|
-      name = line.split("—").first.strip
+    unless item_text.include?("—")
+      return redirect_to chat_path(@chat), alert: "Invalid confirmation format."
+    end
 
-      item = MenuItem.find_by("LOWER(name) = ?", name.downcase) ||
-            Wine.find_by("LOWER(name) = ?", name.downcase)      ||
-            Beverage.find_by("LOWER(name) = ?", name.downcase)
+    name = item_text.split("—").first.strip
 
-      next unless item
+    item = MenuItem.find_by("LOWER(name) = ?", name.downcase) ||
+          Wine.find_by("LOWER(name) = ?", name.downcase)      ||
+          Beverage.find_by("LOWER(name) = ?", name.downcase)
+    return redirect_to chat_path(@chat), alert: "Item not found." unless item
 
-      OrderItem.create!(
-        user: User.last,
-        menu_item_id: item.is_a?(MenuItem) ? item.id : nil,
-        wine_id:      item.is_a?(Wine)      ? item.id : nil,
-        beverage_id:  item.is_a?(Beverage)  ? item.id : nil,
-        quantity: 1
+
+     OrderItem.create!(
+      user: User.last,
+      menu_item_id: item.is_a?(MenuItem) ? item.id : nil,
+      wine_id:      item.is_a?(Wine)      ? item.id : nil,
+      beverage_id:  item.is_a?(Beverage)  ? item.id : nil,
+      quantity: 1
       )
-     end
 
     redirect_to chat_path(@chat), notice: "Confirmed items added to order!"
   end
@@ -88,5 +86,4 @@ class ChatsController < ApplicationController
 
     PROMPT
   end
-
 end
