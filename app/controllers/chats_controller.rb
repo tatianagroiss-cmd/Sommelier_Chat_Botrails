@@ -29,6 +29,7 @@ class ChatsController < ApplicationController
 
     confirmed_lines = assistant_messages.flat_map do |msg|
     msg.content.lines.select { |l| l.strip.start_with?("Confirmed:") }
+    end
 
     confirmed_lines.each do |line|
       item_text = line.sub("Confirmed:", "").strip
