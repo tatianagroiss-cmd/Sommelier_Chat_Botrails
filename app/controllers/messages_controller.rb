@@ -80,7 +80,7 @@ class MessagesController < ApplicationController
       - Never overwhelm the guest.
 
       FOOD:
-      - Suggest food only when relevant or when asked.
+
       - Max 1–2 items, same vertical list format.
       - Short pairing explanation if needed.
 
@@ -89,13 +89,10 @@ class MessagesController < ApplicationController
       - Vertical list.
       - Add a confident, elegant pairing comment.
 
-      WHEN USER ASKS “what else”:
-      - Suggest one new wine, optionally with one matching dish.
-      - Keep it light and stylish.
-
       CONFIRMATION (only when user clearly accepts):
       - Triggered by “ok”, “yes”, “I’ll take it”, “add it”, “I take it”, etc.
-      - Confirm ONLY items from your immediately previous suggestion.
+      - Find the suggested item from #{@chat.messages.last.content} from allowed items.
+      - You may confirm ONE or MULTIPLE items.
       - If the user says only “ok/yes”, confirm the last suggested item.
       - Format confirmation in ONE clean line:
         Confirmed: Item — Price €

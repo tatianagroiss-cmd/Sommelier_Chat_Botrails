@@ -27,33 +27,31 @@ class ChatsController < ApplicationController
 
     return redirect_to chat_path(@chat), alert: "No assistant reply found." if last_reply.blank?
 
-    confirmed_line = last_reply.lines.find { |l| l.strip.start_with?("Confirmed:") }
+    confirmed_lines = last_reply.lines.select { |l| l.strip.start_with?("Confirmed:") }
 
-    return redirect_to chat_path(@chat), alert: "No confirmed items." unless confirmed_line
+    return redirect_to chat_path(@chat), alert: "No confirmed items." if confirmed_lines.empty?
 
-    item_text = confirmed_line.sub("Confirmed:", "").strip
+    confirmed_lines.each do |line|
+      item_text = line.sub("Confirmed:", "").strip
+      delimiter = item_text.include?("—") ? "—" : "-"
+      next unless item_text.include?(delimiter)
+      name = item_text.split(delimiter).first.strip
 
-    unless item_text.include?("—")
-      return redirect_to chat_path(@chat), alert: "Invalid confirmation format."
+      item = MenuItem.find_by("LOWER(name) = ?", name.downcase) ||
+            Wine.find_by("LOWER(name) = ?", name.downcase)      ||
+            Beverage.find_by("LOWER(name) = ?", name.downcase)
+
+      next unless item
+
+      OrderItem.create!(
+        user: User.last,
+        menu_item_id: item.is_a?(MenuItem) ? item.id : nil,
+        wine_id:      item.is_a?(Wine)      ? item.id : nil,
+        beverage_id:  item.is_a?(Beverage)  ? item.id : nil,
+        quantity: 1
+        )
     end
-
-    name = item_text.split("—").first.strip
-
-    item = MenuItem.find_by("LOWER(name) = ?", name.downcase) ||
-          Wine.find_by("LOWER(name) = ?", name.downcase)      ||
-          Beverage.find_by("LOWER(name) = ?", name.downcase)
-    return redirect_to chat_path(@chat), alert: "Item not found." unless item
-
-
-     OrderItem.create!(
-      user: User.last,
-      menu_item_id: item.is_a?(MenuItem) ? item.id : nil,
-      wine_id:      item.is_a?(Wine)      ? item.id : nil,
-      beverage_id:  item.is_a?(Beverage)  ? item.id : nil,
-      quantity: 1
-      )
-
-    redirect_to chat_path(@chat), notice: "Confirmed items added to order!"
+    redirect_to order_items_path, notice: "Confirmed items added to order!"
   end
 
 
