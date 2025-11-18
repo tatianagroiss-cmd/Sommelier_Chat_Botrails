@@ -23,13 +23,12 @@ class ChatsController < ApplicationController
 
   def add_recommendations
     @chat = Chat.find(params[:id])
-    last_reply = @chat.messages.where(role: "assistant").last&.content
 
-    return redirect_to chat_path(@chat), alert: "No assistant reply found." if last_reply.blank?
+    assistant_messages = @chat.messages.where(role: "assistant")
+    return redirect_to chat_path(@chat), alert: "No assistant replies found." if assistant_messages.empty?
 
-    confirmed_lines = last_reply.lines.select { |l| l.strip.start_with?("Confirmed:") }
-
-    return redirect_to chat_path(@chat), alert: "No confirmed items." if confirmed_lines.empty?
+    confirmed_lines = assistant_messages.flat_map do |msg|
+    msg.content.lines.select { |l| l.strip.start_with?("Confirmed:") }
 
     confirmed_lines.each do |line|
       item_text = line.sub("Confirmed:", "").strip
