@@ -55,6 +55,9 @@ gem "sassc-rails"
 gem "neighbor"
 gem "ruby-openai"
 gem "ruby_llm", "~> 1.6.4"
+gem 'nokogiri'
+gem 'rack', '~> 2.2.4'
+gem 'rspec'
 
 group :development, :test do
   gem "dotenv-rails"
