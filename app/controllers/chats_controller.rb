@@ -23,10 +23,48 @@ class ChatsController < ApplicationController
      @chat = Chat.find(params[:id])
   end
 
+  def add_recommendations
+    @chat = Chat.find(params[:id])
+    last_reply = @chat.messages.where(role: "assistant").last&.content
+
+    return redirect_to chat_path(@chat), alert: "No assistant reply found." if last_reply.blank?
+
+    confirmed_block = last_reply.split("Confirmed:").last
+    return redirect_to chat_path(@chat), alert: "No confirmed items." unless confirmed_block
+
+    confirmed_lines = confirmed_block.split("\n").map(&:strip)
+                                    .select { |l| l.match?(/—\s*\d/) }
+
+    return redirect_to chat_path(@chat), alert: "No valid confirmed items." if confirmed_lines.empty?
+
+    confirmed_lines.each do |line|
+      name = line.split("—").first.strip
+
+      item = MenuItem.find_by("LOWER(name) = ?", name.downcase) ||
+            Wine.find_by("LOWER(name) = ?", name.downcase)      ||
+            Beverage.find_by("LOWER(name) = ?", name.downcase)
+
+      next unless item
+
+      OrderItem.create!(
+        user: User.last,
+        menu_item_id: item.is_a?(MenuItem) ? item.id : nil,
+        wine_id:      item.is_a?(Wine)      ? item.id : nil,
+        beverage_id:  item.is_a?(Beverage)  ? item.id : nil,
+        quantity: 1
+      )
+     end
+
+    redirect_to chat_path(@chat), notice: "Confirmed items added to order!"
+  end
+
+
+
   private
   def build_starter_prompt(mood)
 
     <<~PROMPT
+
       You are a sommelier with the personality:
 
       "#{mood.name} — #{mood.description}"

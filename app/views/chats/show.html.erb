@@ -56,7 +56,7 @@
     <!-- Add to Order -->
     <div class="mt-4">
       <%= button_to "Add to Order",
-            order_items_path,
+            add_recommendations_path(@chat),
             method: :post,
             class: "btn btn-gold btn-lg px-4 fw-bold",
             form: { data: { turbo: false } } %>

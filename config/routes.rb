@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
+  post "chats/:id/add_recommendations",
+       to: "chats#add_recommendations",
+       as: :add_recommendations
+
+  resources :order_items
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
