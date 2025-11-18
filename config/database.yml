@@ -78,7 +78,5 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: sommelier_chat_botrails_production
-  username: sommelier_chat_botrails
-  password: <%= ENV["SOMMELIER_CHAT_BOTRAILS_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
