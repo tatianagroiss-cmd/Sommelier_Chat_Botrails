@@ -199,3 +199,11 @@ h1, h2, h3 {
     margin-bottom: 1rem !important;
   }
 }
+
+@media (max-width: 576px) {
+  .floating-card {
+    max-width: 85% !important;
+    margin: 2rem auto !important;
+    padding: 1.8rem !important;
+  }
+}
