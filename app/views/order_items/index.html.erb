@@ -39,6 +39,11 @@
       <%= link_to "Back to Drinks", beverages_path, class: "btn btn-gold" %>
       <h4><strong>Total:</strong> <%= number_to_currency(@total_price, unit: "€") %></h4>
     </div>
+    <div class="text-center mt-4">
+      <button id="confirm-order-btn" class="btn btn-gold btn-lg px-5 py-2">
+        Confirm Order
+      </button>
+    </div>
   </div>
  </div>
 </div>
