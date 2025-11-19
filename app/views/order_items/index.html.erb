@@ -33,11 +33,16 @@
       </tbody>
     </table>
 
-    <div class="d-flex justify-content-between mt-4">
-      <%= link_to "Back to Menu", menu_items_path, class: "btn btn-gold" %>
-      <%= link_to "Back to Wine List", wines_path, class: "btn btn-gold" %>
-      <%= link_to "Back to Drinks", beverages_path, class: "btn btn-gold" %>
-      <h4><strong>Total:</strong> <%= number_to_currency(@total_price, unit: "€") %></h4>
+    <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center mt-4 gap-3">
+      <div class="d-flex flex-column flex-md-row gap-3 w-100 w-md-auto">
+          <%= link_to "Back to Menu", menu_items_path, class: "btn btn-gold w-100 w-md-auto" %>
+          <%= link_to "Back to Wine List", wines_path, class: "btn btn-gold w-100 w-md-auto" %>
+          <%= link_to "Back to Drinks", beverages_path, class: "btn btn-gold w-100 w-md-auto" %>
+      </div>
+
+      <h4 class="text-md-end text-center mb-0">
+        <strong>Total:</strong> <%= number_to_currency(@total_price, unit: "€") %>
+      </h4>
     </div>
 
     <div class="d-grid col-12 d-md-flex justify-content-md-end">
