@@ -22,8 +22,8 @@
         <div class="col-md-4 text-center">
           <% if @menu_item.image_name.present? %>
             <%= image_tag asset_path(@menu_item.image_name),
-                class: "img-fluid rounded-3 float-end ms-3 shadow",
-                style: "max-width: 220px; height: auto;",
+                class: "rounded-3 shadow",
+                style: "max-height: 180px; width: 100%; height: auto; object-fit: contain;",
                 alt: @menu_item.name %>
           <% else %>
             <p class="text-muted">No image available</p>
