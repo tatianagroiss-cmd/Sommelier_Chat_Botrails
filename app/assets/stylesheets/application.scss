@@ -123,3 +123,79 @@ h1, h2, h3 {
   font-weight: 600;
   letter-spacing: 1px;
 }
+
+/* Champagne bubbles animation */
+#champagne-bubbles {
+  pointer-events: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 9999;
+  display: none;
+}
+
+.champagne-bubble {
+  position: absolute;
+  bottom: -40px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 240, 180, 0.7) 50%,
+    rgba(255, 255, 255, 0.25) 100%,
+  );
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255,255,255,0.45);
+  animation: riseChampagne linear forwards;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.25));
+}
+
+@keyframes riseChampagne {
+  0% {
+    transform: translateX(0) translateY(0) scale(0.9);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(-3px) translateY(-55vh) scale(1.2);
+  }
+  100% {
+    transform: translateX(3px) translateY(-140vh) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.swal-floating-card {
+  max-width: 600px !important;
+  padding: 2.5rem !important;
+  border-radius: 1.5rem !important;
+
+  background: linear-gradient(160deg, #3b3b3bff, #040404ff, #171717ff) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+
+  box-shadow:
+    0 12px 70px rgba(0,0,0,0.9),
+    inset 0 1px 5px rgba(255,255,255,0.15),
+    inset 0 -3px 10px rgba(0,0,0,0.6) !important;
+
+  backdrop-filter: blur(8px) !important;
+  color: #fff !important;
+  letter-spacing: 1px;
+
+  .swal2-html-container {
+    margin-top: 1rem !important;
+    color: #e6d8b7 !important;
+  }
+
+  .swal2-title {
+    font-family: 'Fredericka the Great', serif;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #f5f5dc, #daa520, #8b4513);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(218,165,32,0.4);
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+}

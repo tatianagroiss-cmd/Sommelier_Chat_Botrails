@@ -39,11 +39,80 @@
       <%= link_to "Back to Drinks", beverages_path, class: "btn btn-gold" %>
       <h4><strong>Total:</strong> <%= number_to_currency(@total_price, unit: "€") %></h4>
     </div>
-    <div class="text-center mt-4">
-      <button id="confirm-order-btn" class="btn btn-gold btn-lg px-5 py-2">
+
+    <div class="d-grid col-12 d-md-flex justify-content-md-end">
+      <button id="confirm-order-btn" class="btn btn-gold btn-lg me-md-3 mt-3">
         Confirm Order
       </button>
     </div>
+
   </div>
  </div>
 </div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("confirm-order-btn");
+
+  btn.addEventListener("click", () => {
+
+    // SweetAlert
+    Swal.fire({
+      title: 'Your order is confirmed!',
+      html: `
+        <p style="font-size:18px; letter-spacing:1px;">
+          Get ready — your perfect evening begins now.
+        </p>
+      `,
+      background: "transparent",
+      color: "#f8e9c0",
+      confirmButtonText: "Cheers!",
+      confirmButtonColor: "#d4af37",
+      customClass: {
+        popup: 'swal-floating-card',
+        confirmButton: 'btn-gold'
+      }
+    });
+
+    launchChampagne();
+  });
+
+
+  function launchChampagne() {
+    const container = document.getElementById("champagne-bubbles");
+    container.style.display = "block";
+
+    const interval = setInterval(() => {
+      createChampagneBubble(container);
+    }, 30); // много маленьких пузырьков
+
+    // отключаем
+    setTimeout(() => {
+      clearInterval(interval);
+      setTimeout(() => {
+        container.style.display = "none";
+        container.innerHTML = "";
+      }, 3000);
+    }, 3500);
+  }
+
+
+  function createChampagneBubble(container) {
+    const bubble = document.createElement("div");
+    bubble.classList.add("champagne-bubble");
+
+    const size = Math.random() * 14 + 10;
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+
+    bubble.style.left = `${Math.random() * 100}%`;
+
+    bubble.style.animationDuration = (Math.random() * 2 + 4) + "s";
+
+    container.appendChild(bubble);
+
+    setTimeout(() => bubble.remove(), 7000);
+  }
+});
+</script>
