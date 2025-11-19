@@ -4,25 +4,29 @@
     <div class="container mt-3">
       <h1 class="display-5 mb-3 heading-gold">Drinks</h1>
 
-      <table class="table table-hover table-dark align-middle">
-        <thead class="table-dark">
-        </thead>
+      <div class="table-responsive">
+        <table class="table table-hover table-dark align-middle">
+          <thead class="table-dark">
+          </thead>
 
-        <tbody>
-          <% @beverages.each do |beverage| %>
-            <tr>
-              <td><%= beverage.name %></td>
-              <td>€ <%= number_with_precision(beverage.price, precision: 0) %></td>
-              <td class="text-end">
-                <%= form_with model: OrderItem.new, url: order_items_path, local: true, class: "d-inline-flex align-items-center" do |f| %>
-                    <%= f.hidden_field :beverage_id, value: beverage.id %>
-                    <%= f.number_field :quantity, value: 1, min: 1, class: "form-control form-control-sm me-2", style: "width: 50px;" %>
-                    <%= f.submit "Add to Order", class: "btn btn-gold btn-sm" %>
-                  <% end %>
+          <tbody>
+            <% @beverages.each do |beverage| %>
+              <tr>
+                <td><%= beverage.name %></td>
+                <td>€ <%= number_with_precision(beverage.price, precision: 0) %></td>
+                <td class="text-end">
+                  <%= form_with model: OrderItem.new, url: order_items_path, local: true, class: "d-inline-flex align-items-center" do |f| %>
+                      <%= f.hidden_field :beverage_id, value: beverage.id %>
+                      <%= f.number_field :quantity, value: 1, min: 1, class: "form-control form-control-sm me-2", style: "width: 50px;" %>
+                      <%= f.submit "Add to Order", class: "btn btn-gold btn-sm" %>
+                    <% end %>
 
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+</div>
