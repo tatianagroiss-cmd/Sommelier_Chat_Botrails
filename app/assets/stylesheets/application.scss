@@ -207,3 +207,10 @@ h1, h2, h3 {
     padding: 1.8rem !important;
   }
 }
+
+/* Allow tables to scroll horizontally inside floating card */
+.floating-card .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
